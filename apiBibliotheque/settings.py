@@ -26,7 +26,8 @@ SECRET_KEY = 'e(^##e&3oe+!*gp0f7&hg#qei*54+kjzhi1nwo&4#7yapo9if2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*", "127.0.0.1", "http://localhost:4200", "https://apibibliotheque.herokuapp.com/"]
+ALLOWED_HOSTS = ["http://localhost:4200", "http://127.0.0.1:4200", "https://apibibliotheque.herokuapp.com"]
+# , "127.0.0.1", "http://localhost:4200", "https://apibibliotheque.herokuapp.com/"
 
 
 # Application definition
@@ -74,7 +75,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
        "http://localhost:4200",
-       "http://127.0.0.1:8000"
+       "http://127.0.0.1:4200"
 )
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https://\w+$",
@@ -84,9 +85,21 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
 #     r"^https://\w+\.example\.com$",
 # ]
 CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:4200"
     "http://localhost:4200",
-    "http://127.0.0.1:8000"
+    "http://127.0.0.1:8000",
+    "https://apibibliotheque.herokuapp.com"
 ]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
 
 ROOT_URLCONF = 'apiBibliotheque.urls'
 
