@@ -163,12 +163,46 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
+''' DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db001.sqlite3',
     }
+} '''
+
+
+import dj_database_url 
+db_from_env = dj_database_url.config(conn_max_age=500) 
+
+
+import psycopg2
+
+DATABASE_URL = "postgres://hrmcyblhzwickz:ad94c1ed7a3d0d23e84ca4fb6d271a297a1bec78608d80bdc31e4edf2630857f@ec2-52-44-31-100.compute-1.amazonaws.com:5432/d543s3vp42hepm" #os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+prod_db  =  dj_database_url.config(conn_max_age=500)
+
+
+import psycopg2.extensions
+import dj_database_url
+#44
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'communication',
+        'USER': '',
+        'PASSWORD': "",
+        'HOST': 'postgres://ezblwajcszorjc:cf9f04a30fdbffd69536e87eccb78316d9a376058e15f9a2f1939b3a5c96ea75@ec2-3-95-124-37.compute-1.amazonaws.com:5432/d2edag8e0mcvt9',
+        'PORT': '5432',
+        'OPTIONS': {
+            'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        },
+    }
 }
+#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(prod_db)
 
 
 # Password validation
