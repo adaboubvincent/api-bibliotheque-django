@@ -17,7 +17,7 @@ from .serializers import LivreSerializer, LivreSerializerOperation
 def ajoutLivre(request):
     #if request.method == 'POST' :
     print(request.data)
-    livre = LivreSerializerOperation(data=request.data)
+    livre = LivreSerializer(data=request.data)
     if livre.is_valid():
         livre.save()
         return Response(livre.data, status.HTTP_201_CREATED)
