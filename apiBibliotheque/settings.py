@@ -85,10 +85,10 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
 #     r"^https://\w+\.example\.com$",
 # ]
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:4200"
+    "http://127.0.0.1:4200",
     "http://localhost:4200",
     "http://127.0.0.1:8000",
-    "https://apibibliotheque.herokuapp.com"
+    "https://apibibliotheque.herokuapp.com",
 ]
 
 CORS_ALLOW_METHODS = [
