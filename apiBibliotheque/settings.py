@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'e(^##e&3oe+!*gp0f7&hg#qei*54+kjzhi1nwo&4#7yapo9if2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*", "127.0.0.1", "http://localhost:4200"]
+ALLOWED_HOSTS = ["*", "127.0.0.1", "http://localhost:4200", "https://apibibliotheque.herokuapp.com/"]
 
 
 # Application definition
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 
     'bibliotheque.apps.BibliothequeConfig',
     'corsheaders',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +78,7 @@ CORS_ORIGIN_WHITELIST = (
 )
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https://\w+$",
+    r"^http://\w+$",
 ]
 # CORS_ALLOWED_ORIGIN_REGEXES = [
 #     r"^https://\w+\.example\.com$",
@@ -160,3 +163,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+
+import django_heroku
+django_heroku.settings(locals())
