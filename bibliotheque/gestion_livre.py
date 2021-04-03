@@ -44,7 +44,12 @@ def livre(request, id: int):
         return Response(LivreSerializer(livre).data, status.HTTP_200_OK)
 
     elif request.method == 'PUT' :
-        serializer = LivreSerializerOperation(livre, data=request.data)
+        serializer = LivreSerializerOperation(livre, data={
+            'titre' : request.data['titre'],
+            'editeur': request.data['editeur'],
+            'categorie' : request.data['categorie']['id'],
+            'auteur' : request.data['auteur']['id']
+        })
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status.HTTP_200_OK)

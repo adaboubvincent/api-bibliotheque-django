@@ -16,7 +16,11 @@ from .serializers import BibliothequeSerializer, BibliothequeSerializerOperation
 @api_view(["POST"])
 def ajoutBibliotheque(request):
     if request.method == 'POST' :
-        bibliotheque = BibliothequeSerializerOperation(data=request.data)
+        bibliotheque = BibliothequeSerializerOperation(data={
+            'dateRetour': request.data['dateRetour'],
+            'adherent' : request.data['adherent']['id'],
+            'livre' : request.data['livre']['id']
+        })
         if bibliotheque.is_valid():
             bibliotheque.save()
             return Response(bibliotheque.data, status.HTTP_201_CREATED)
@@ -36,7 +40,11 @@ def bibliotheque(request, id: int):
         return Response(BibliothequeSerializer(bibliotheque).data, status.HTTP_200_OK)
 
     elif request.method == 'PUT' :
-        serializer = BibliothequeSerializerOperation(bibliotheque, data=request.data)
+        serializer = BibliothequeSerializerOperation(bibliotheque, data={
+            'dateRetour': request.data['dateRetour'],
+            'adherent' : request.data['adherent']['id'],
+            'livre' : request.data['livre']['id']
+        })
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status.HTTP_200_OK)
