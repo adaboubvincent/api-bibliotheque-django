@@ -26,9 +26,9 @@ SECRET_KEY = 'e(^##e&3oe+!*gp0f7&hg#qei*54+kjzhi1nwo&4#7yapo9if2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["http://localhost:4200", "http://127.0.0.1:4200", "https://apibibliotheque.herokuapp.com"]
+#ALLOWED_HOSTS = ["http://localhost:4200", "http://127.0.0.1:4200", "https://apibibliotheque.herokuapp.com"]
 # , "127.0.0.1", "http://localhost:4200", "https://apibibliotheque.herokuapp.com/"
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
