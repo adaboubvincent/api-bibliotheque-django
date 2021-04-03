@@ -26,9 +26,9 @@ SECRET_KEY = 'e(^##e&3oe+!*gp0f7&hg#qei*54+kjzhi1nwo&4#7yapo9if2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["http://localhost:4200", "http://127.0.0.1:4200", "https://apibibliotheque.herokuapp.com"]
+#ALLOWED_HOSTS = ["http://localhost:4200", "http://127.0.0.1:4200", "https://apibibliotheque.herokuapp.com"]
 # , "127.0.0.1", "http://localhost:4200", "https://apibibliotheque.herokuapp.com/"
-
+ALLOWED_HOSTS = ["127.0.0.1","localhost", ]
 
 # Application definition
 
@@ -71,11 +71,41 @@ MIDDLEWARE_CLASSES = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+
+
+
+
+
+CORS_ALLOW_CREDENTIALS=True
+
+
+
+CORS_ALLOW_HEADERS = (
+'accept',
+'accept-encoding',
+'authorization',
+'content-type',
+'dnt',
+'origin',
+'user-agent',
+'x-csrftoken',
+'x-requested-with',
+'Access-Control-Allow-Origin',)
+
+
+
+
+
+
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = (
+''' CORS_ORIGIN_WHITELIST = (
        "http://localhost:4200",
        "http://127.0.0.1:4200"
+) '''
+CORS_ORIGIN_WHITELIST = (
+"127.0.0.1:4200",
+"localhost:4200",
 )
 ''' CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https://\w+$",
@@ -99,7 +129,11 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',
 ]
+from corsheaders.defaults import default_headers
 
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'Access-Control-Allow-Origin',
+]
 
 ROOT_URLCONF = 'apiBibliotheque.urls'
 
