@@ -16,6 +16,7 @@ from .serializers import LivreSerializer, LivreSerializerOperation
 @api_view(["POST"])
 def ajoutLivre(request):
     #if request.method == 'POST' :
+    print(request.data)
     livre = LivreSerializerOperation(data=request.data)
     if livre.is_valid():
         livre.save()
