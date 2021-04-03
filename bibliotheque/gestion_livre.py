@@ -15,16 +15,15 @@ from .serializers import LivreSerializer, LivreSerializerOperation
 
 @api_view(["POST"])
 def ajoutLivre(request):
-    print("IL EST ICI")
-    if request.method == 'POST' :
-        livre = LivreSerializerOperation(data=request.data)
-        if livre.is_valid():
-            livre.save()
-            return Response(livre.data, status.HTTP_201_CREATED)
-        else:
-            return Response({'text': 'livre non créé'}, status.HTTP_400_BAD_REQUEST)
+    #if request.method == 'POST' :
+    livre = LivreSerializerOperation(data=request.data)
+    if livre.is_valid():
+        livre.save()
+        return Response(livre.data, status.HTTP_201_CREATED)
     else:
-        return Response({'text': 'cette méthode n\'est pas appliquée sur cette fonction'}, status.HTTP_400_BAD_REQUEST)
+        return Response({'text': 'livre non créé'}, status.HTTP_400_BAD_REQUEST)
+    #else:
+    #    return Response({'text': 'cette méthode n\'est pas appliquée sur cette fonction'}, status.HTTP_400_BAD_REQUEST)
 
 @api_view(["GET", "PUT", 'DELETE'])
 def livre(request, id: int):
