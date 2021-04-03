@@ -15,10 +15,17 @@ from .serializers import LivreSerializer, LivreSerializerOperation
 
 @api_view(["POST"])
 def ajoutLivre(request):
+    print('OOOK')
     if request.method == 'POST' :
-        livre = LivreSerializerOperation(data=request.data)
-        print(livre.is_valid())
+        livre = LivreSerializerOperation(data={
+            'titre' : request.data['titre'],
+            'editeur': request.data['editeur'],
+            'categorie' : request.data['categorie']['id'],
+            'auteur' : request.data['auteur']['id']
+        })
+        
         if livre.is_valid():
+            print('OOOK COOOL')
             livre.save()
             return Response(livre.data, status.HTTP_201_CREATED)
         else:
